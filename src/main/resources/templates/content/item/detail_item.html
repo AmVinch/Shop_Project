@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout" 
+	layout:decorate="~{layout/base_layout}"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	
+<div layout:fragment="content">
+
+<div class="row justify-content-center" style="padding:1%;" >
+	<div class="col-12">
+	<!-- 상품의 상세정보를 가져오려면 카테고리 정보도 가져와야한다. -->
+	<!-- 상품을 기준으로 이전 상품목록조회처럼 컬렉션을 만들어 사용해야한다. -->
+	<!-- 카테고리기준 상품정보테이블과 관계 : 1:n ->  collection   -->
+	<!-- 상품정보기준카테고리테이블의 관계 : 1:1 ->  association   -->
+		<div class="row mb-3"  >
+			<div class="col">
+				<h3>Detail Item Page</h3>
+			</div>
+		</div>
+		
+		<div class="row" style="width: 80%; padding-left : 20%;">
+			<div class="col-12">
+				 <div class="row" > 
+				 
+				 <!-- 상품 상세 이미지 -->
+				 	<div  class="col-md-6"> 
+				 	<th:block th:each="img : ${item.imgList}">
+					 	<th:block th:if="${img.isMain eq 'Y'}"> 
+					 		<div align="center">
+					 			<img class="img-thumbnail" width= "180px"  th:src="|@{/images/}${img.attachedName}|">  
+					 		</div>
+					 	</th:block>
+				 	</th:block>
+				 	</div>
+				 	
+				 	<!-- 상품상세정보 우측화면 -->
+				 	<div style="font-size: 20px; "  class="col-md-6"> 
+				 	
+				 	<div class="row" style="background-color: #F9F9F9;" >
+				 		<div class="col">
+				 	
+					 		<div class="row mb-2 mt-3">
+						 		<div class="col-md-6" style="background-color: #F9F9F9;">
+						 			<div >카테고리 </div>
+						 		</div>
+						 		<div class="col-md-6">
+						 			<div th:text="${item.categoryVO.cateName}"></div>
+						 		</div>
+					 		</div>
+					 		<div class="row mb-2">
+						 		<div class="col-6" style="background-color: #F9F9F9;">
+						 			<div>상품명 </div>
+						 		</div>
+						 		<div class="col-6">
+						 			<div th:text="${item.itemName}"></div>
+						 		</div>
+					 		</div>
+					 		
+					 		<div class="row mb-2">
+						 		<div class="col-6" style="background-color: #F9F9F9;">
+						 			<div>가격 </div>
+						 		</div>
+						 		<div class="col-6">
+						 			<div th:text="${item.itemPrice}">원</div>
+						 		</div>
+					 		</div>
+					 		
+					 		<div class="row mb-2">
+						 		<div class="col-6" style="background-color: #F9F9F9;">
+						 			<div>수량 </div>
+						 		</div>
+						 		<div class="col-6">
+						 			<input type="number" value="1" class="form-control" aria-describedby="passwordHelpInline">
+						 		</div>
+					 		</div>
+					 			
+					 		<div class="row mb-2">
+						 		<div class="col-6" style="background-color: #F9F9F9;">
+						 			<div >총가격 </div>
+						 		</div>
+						 		<div class="col-6">
+						 			<div th:text="${item.itemPrice}">원</div>
+						 		</div>
+					 		</div>
+				 		
+				 			</div>
+			 			</div>
+				 			
+				 			
+				 		<div class="row">
+				 			<div class="col">
+					 		<div  class="row mb-2"  style="margin-top: 15px; ">
+						 		<div class="col-6">
+						 			<button type="button" class="btn btn-outline-secondary">
+							 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+										  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+										</svg> 
+										&nbsp 구매 
+								</button>
+						 		</div>
+						 		<div class="col-6">
+						 			<input type="button" value="장바구니" onclick="" class="btn btn-light"> 
+					 			<!-- <input type="submit" value="구매"  class="btn btn-light">  -->
+						 		</div>
+					 		</div>
+				 			</div>
+				 		</div>
+				 		
+				 			
+				 	</div>
+				 </div> 
+		  	</div>
+		</div>
+		 
+		 <div class="row mt-5">
+			<div class="col-12">
+				 <div class="row  row justify-center-center">
+				 	<div class="col"> 
+				 		<div style="font-size: 25px;">상품 내용</div>
+						<div th:text="${item.itemComment}"  style="padding:15px;  height:150px;  background-color: #F9F9F9;"></div>
+				 	</div>
+				 </div>
+			</div>		 
+		 </div>
+				 
+		 <div class="row mt-5">
+		 	<div class="col"> 
+			 <div style="font-size: 25px;">상세 이미지</div>
+			 	<th:block th:each="img : ${item.imgList}">
+				 	<th:block th:if="${img.isMain ne 'Y'}"> 
+				 		<div  style="background-color: #F9F9F9;" align="center">
+				 			<img class="img-thumbnail" width= "290px" height="260px" th:src="|@{/images/}${img.attachedName}|">  
+				 		</div>
+				 	</th:block>
+			 	</th:block>
+		 	</div>
+		</div>
+		
+		 
+		</div>
+	</div>
+</div>
+</html>

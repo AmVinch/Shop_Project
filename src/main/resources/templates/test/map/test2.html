@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Map Test2</title>
+</head>
+<body>
+	<table border="1" >
+		<tr>
+			<td>Key</td>
+			<td>회원 ID :</td>
+			<td>회원명 :</td>
+		</tr>
+		<tr th:each="data: ${mapData}">
+		<!-- map은 list와 달리 순서가 없이 출력된다-->
+		
+			<!-- <td th:text="${data.key}"></td>
+			<td th:text="${data.value}"></td> -->
+			<td th:text="${data.key}"></td>
+			<td th:text="${data.value.memberId}"></td>
+			<td th:text="${data.value.memberName}"></td>
+		</tr>
+	</table>
+	<br>
+	
+	
+</body>
+
+</html>

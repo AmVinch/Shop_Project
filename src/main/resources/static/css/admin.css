@@ -1,0 +1,58 @@
+/* 모든파일에 적용되는 공통 css  */
+@charset "UTF-8";
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'RIDIBatang';
+	
+}
+
+a{
+	text-decoration:none;	
+	color: #0F3D3E;
+	font-size: 18px;
+	font-weight: bold;
+}
+a:hover{
+	color: #1C6758;
+}
+.layoutTable{
+	width: 1000px;
+	margin: 0 auto;
+	border: 1px solid black;
+	border-collapse: collapse;
+	margin-top: 40px;
+	text-align: center;
+	
+}
+.layoutTable > tbody >tr, .layoutTable > tbody > tr >td{
+	border: 1px solid black;
+}
+.layoutTable > tbody> tr{/* 자식 */
+	height: 500px;
+}
+.layoutTable > tbody> tr > td{/* 자식 */
+	vertical-align: top;
+	padding: 20px;
+}
+.stuListTable, .stuDetailTable{
+	width: 400px;
+	border: 1px solid gray;
+	border-collapse: collapse;
+	margin: 0 auto;
+	text-align: center;
+}
+.stuListTable tr,.stuListTable td{/* 자손 */
+	border: 1px solid gray;
+}
+.stuDetailTable tr,.stuDetailTable td{/* 자손 */
+	border: 1px solid gray;
+}
+span:hover {
+	cursor: pointer;/* 손가락모양으로 커서변경 */
+}

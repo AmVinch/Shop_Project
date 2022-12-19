@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultra.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/admin_layout}"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content">
+<!--  style 은 적용시키려면 div태그 안에서 !!-->
+<!-- <style>
+#scrollTest {
+	/* 스크롤 형성 */
+	/*  : 기본적 가로세로 모두 설정됨 */
+	/* overflow: scroll;  */
+	overflow-y: scroll; /* y축만(세로) */
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #eeeeee;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	/* background: linear-gradient(#c2e59c, #64b3f4); */
+	background: #dcdcdc;
+	/* background: #0d6efd; */
+	border-radius: 5px;
+}
+</style> -->
+
+	<div class="row">
+		<!-- 좌측화면 -->
+		<div class="col-5">
+		
+			<div class="row">
+				<div style="color:  #0F3D3E;"  class="col-12 mb-3">
+					<h3>SET MEMBER ROLE</h3>
+				</div>
+
+
+				<div class="col-12 mb-3">
+
+					<!-- 스크롤 만들기 -->
+					<div id="scrollTest"
+						style="color:#0F3D3E;  width: 430px; height: 400px; overflow-y:scroll; background-color: white;">
+						회원 목록
+						<table class="table table-striped table-hover text-center">
+						<colgroup>
+							<col width="10%">
+							<col width="30%">
+							<col width="30%">
+							<col width="30%">
+						</colgroup>
+							<thead>
+								<tr><!-- th는 글자진한 td 와 같다 -->
+									<th scope="col">No.</th>
+									<th scope="col">회원명</th>
+									<th scope="col">회원ID</th>
+									<th scope="col">권한</th>
+								</tr>
+							</thead>
+							<!-- 목록조회 테이블  -->
+							<tbody>
+								<th:block th:if="${#lists.size(memberList) == 0}">
+									<tr>
+										<td colspan="4">등록된 회원이 없습니다.</td>
+									</tr>
+								</th:block>
+								<th:block th:unless="${#lists.size(memberList) == 0}">
+									<th:block th:each="memberInfo , status : ${memberList}">
+										<tr>
+											<!-- 넘버 데이터 추출하는 방법 (1) -->
+											<!-- 위의 status를 변수선언하여 사용하는 방법 -->
+											<td th:text="${status.count}"></td>
+											<!--  넘버 데이터 추출하는 방법 (2) 뒤에 문자만 붙여도 가능하다 -->
+											<!-- <td th:text="${memberInfoStat.count}"></td> -->
+
+											<td th:text="${memberInfo.memberId}"></td>
+											<td th:text="${memberInfo.memberName}"
+												th:onclick="showDetailmemberInfo([[${memberInfo.memberId}]])"></td>
+											<td th:text="${memberInfo.memberRole}"></td>
+										</tr>
+									</th:block>
+								</th:block>
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+		<!-- 좌측화면 -끝- -->
+
+		<!-- 우측화면 -->
+		<div style="background-color: #F2F2F2;" class="col-5 ms-5">
+			<div style="color: #0F3D3E;"  class="col-12 mb-3">
+				<h3>Member Detail Information</h3>
+			</div>
+			<!--  <form class="row g-3" th:action="@{/admin/updateMemberRole}"  method="post" th:object="${memberVO}"> -->
+			<div class="col-6" id="detailDiv">
+				<!-- 자바스크립트 AJax-->			
+			</div>
+			<!--  </form>    -->
+
+
+			<!-- <div  class="col-6">
+	               <label class="form-label" for="memberId">memberId</label>
+	               <input class="form-control" type="text" th:field="*{memberId}">            
+	            </div>            
+	            <div class="col-6">
+	               <label class="form-label" for="memberPw">memberPw</label>
+	               <input class="form-control" type="text" th:field="*{memberPw}">            
+	            </div>            
+	            <div class="col-12">
+	               <label class="form-label">memberName</label>
+	               <input class="form-control" type="text" th:field="*{memberName}">            
+	            </div>            
+	            <div class="col-6">
+	               <label class="form-label">memberAddr</label>
+	               <input class="form-control" type="text" th:field="*{memberAddr}">            
+	            </div>            
+	            <div class="col-6">
+	               <label class="form-label">addrDetail</label>
+	               <input class="form-control" type="text" th:field="*{addrDetail}">            
+	            </div>            
+	            <div class="col-12">
+	               <label class="form-label">memberEmail</label>
+	               <input class="form-control" type="text" th:field="*{memberEmail}">            
+	            </div>            
+	            <div class="col-6">
+	               <label class="form-label">memberRole</label>
+	               <input class="form-control" type="text" th:field="*{memberRole}">            
+	            </div>            
+	            <div class="col-6">
+	               <label class="form-label">memberStatus</label>
+	               <input class="form-control" type="text" th:field="*{memberStatus}">            
+	            </div>            
+		         <div align="center">
+					<button type="submit" class="btn btn-light mb-2" >
+					update
+					</button>
+				</div> -->
+
+			<!-- 우측화면 -끝- -->
+		</div>
+	</div>
+	<!-- 반드시 해당되는 div 태그 안에 있어야 실행이 된다. -->
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript"
+		th:src="@{/js/layout/set_member_role.js}"></script>
+</div>
+</html>

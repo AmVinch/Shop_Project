@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'CookieRun-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'twayair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	margin: 0 auto;
+	margin-top: 30px;
+	font-family: 'GongGothicMedium';
+}
+
+#top{
+	font-family: 'CookieRun-Regular';
+	font-size: 18px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+
+#shop{
+	
+	margin: 0 auto;
+	font-size: 60px;
+	font-weight:bold;
+	margin-bottom: 30px;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+textarea {
+	resize: none;
+}
+
